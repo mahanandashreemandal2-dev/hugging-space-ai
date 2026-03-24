@@ -1,20 +1,23 @@
 import { Home, BarChart3, CreditCard, Wallet, User, Settings, LogOut } from "lucide-react";
+import { NavLink } from "@/components/NavLink";
+import { useLocation } from "react-router-dom";
 import { cn } from "@/lib/utils";
 
 const navItems = [
-  { icon: Home, label: "Dashboard", active: true },
-  { icon: BarChart3, label: "Analytics" },
-  { icon: CreditCard, label: "Cards" },
-  { icon: Wallet, label: "Assets" },
-  { icon: User, label: "Profile" },
+  { icon: Home, label: "Dashboard", path: "/" },
+  { icon: BarChart3, label: "Analytics", path: "/analytics" },
+  { icon: CreditCard, label: "Cards", path: "/cards" },
+  { icon: Wallet, label: "Assets", path: "/assets" },
+  { icon: User, label: "Profile", path: "/profile" },
 ];
 
 const bottomItems = [
-  { icon: Settings, label: "Settings" },
-  { icon: LogOut, label: "Logout" },
+  { icon: Settings, label: "Settings", path: "/settings" },
 ];
 
 const Sidebar = () => {
+  const location = useLocation();
+
   return (
     <aside className="flex h-screen w-52 flex-col bg-sidebar p-4">
       <div className="mb-8 flex items-center gap-2 px-2">
@@ -24,31 +27,35 @@ const Sidebar = () => {
 
       <nav className="flex flex-1 flex-col gap-1">
         {navItems.map((item) => (
-          <button
+          <NavLink
             key={item.label}
-            className={cn(
-              "flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium transition-colors",
-              item.active
-                ? "bg-primary text-primary-foreground"
-                : "text-sidebar-foreground hover:bg-sidebar-accent"
-            )}
+            to={item.path}
+            end={item.path === "/"}
+            className="flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium text-sidebar-foreground transition-colors hover:bg-sidebar-accent"
+            activeClassName="bg-primary text-primary-foreground hover:bg-primary/90"
           >
             <item.icon className="h-4 w-4" />
             {item.label}
-          </button>
+          </NavLink>
         ))}
       </nav>
 
       <div className="flex flex-col gap-1">
         {bottomItems.map((item) => (
-          <button
+          <NavLink
             key={item.label}
+            to={item.path}
             className="flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium text-sidebar-foreground transition-colors hover:bg-sidebar-accent"
+            activeClassName="bg-primary text-primary-foreground hover:bg-primary/90"
           >
             <item.icon className="h-4 w-4" />
             {item.label}
-          </button>
+          </NavLink>
         ))}
+        <button className="flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium text-sidebar-foreground transition-colors hover:bg-sidebar-accent">
+          <LogOut className="h-4 w-4" />
+          Logout
+        </button>
       </div>
     </aside>
   );
