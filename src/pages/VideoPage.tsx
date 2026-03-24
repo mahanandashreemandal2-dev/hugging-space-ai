@@ -220,14 +220,14 @@ const VideoPage = () => {
                         active
                           ? "bg-primary/10 text-primary font-medium"
                           : completed
-                          ? "text-green-400 hover:bg-accent"
+                          ? "text-success hover:bg-accent"
                           : unlocked
                           ? "text-foreground hover:bg-accent"
                           : "cursor-not-allowed text-muted-foreground/40"
                       }`}
                     >
                       {completed ? (
-                        <CheckCircle2 className="h-4 w-4 shrink-0 text-green-500" />
+                        <CheckCircle2 className="h-4 w-4 shrink-0 text-success" />
                       ) : unlocked ? (
                         <Play className="h-4 w-4 shrink-0" />
                       ) : (

@@ -143,17 +143,17 @@ const SubjectDetail = () => {
                       disabled={!unlocked}
                       className={`flex w-full items-center gap-4 rounded-xl border p-4 text-left transition-all ${
                         completed
-                          ? "border-green-500/20 bg-green-500/5"
+                          ? "border-success/20 bg-success/5"
                           : unlocked
                           ? "border-border/50 bg-card hover:border-primary/30 hover:bg-accent"
                           : "cursor-not-allowed border-border/30 bg-muted/30 opacity-50"
                       }`}
                     >
                       <div className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-lg ${
-                        completed ? "bg-green-500/10" : unlocked ? "bg-primary/10" : "bg-muted"
+                        completed ? "bg-success/10" : unlocked ? "bg-primary/10" : "bg-muted"
                       }`}>
                         {completed ? (
-                          <CheckCircle2 className="h-5 w-5 text-green-500" />
+                          <CheckCircle2 className="h-5 w-5 text-success" />
                         ) : unlocked ? (
                           <Play className="h-5 w-5 text-primary" />
                         ) : (
